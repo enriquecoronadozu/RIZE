@@ -3,14 +3,14 @@ var vueApp = new Vue({
   el: '#app',
   data: () => ({
     dialog: false,
+    items: [
+      { title: 'Dashboard', icon: 'dashboard' },
+      { title: 'Account', icon: 'account_box' },
+      { title: 'Admin', icon: 'gavel' },
+    ],
    
   }),
 
-  computed: {
-    formTitle() {
-      return this.editedIndex === -1 ? 'New robot' : 'Edit robot'
-    }
-  },
 
   
   methods: {

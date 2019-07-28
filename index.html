@@ -1,185 +1,167 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 
 <head>
   <meta charset="utf-8" />
-  <link rel="icon" type="image/png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="author" content="Enrique Coronado" />
   <title>Rize</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <meta name="viewport" content="width=device-width" />
-
-  <!--   ################# Vuetify #################### -->
-  <link href="web/vuetify/vuetify.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@3.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
-
   <!--   #################### Material Icons  ################### -->
   <link rel="stylesheet" href="web/material-icons/material-design-icons.css">
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
   <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
-  <style>
-
-
-  </style>
-  </style>
-
-  <!--   ############### Vue + Vuetify ############## -->
-  <script src="web/vue.js"></script>
-  <script src="web/vuetify/vuetify.js"></script>
-
-
 </head>
 
 <body>
 
   <div id="app">
-    <!-- vue App -->
     <v-app id="inspire" style="
-    background: rgb(255, 255, 255);">
+        background: rgb(255, 255, 255);">
 
-      <!-- ############################# Toolbar　#######################################  -->
 
-      <v-toolbar prominent flat app dense color="white">
+      <v-app-bar flat app dense color="white">
 
-        <v-toolbar-title color="grey darken-3">RIZE</v-toolbar-title>
         <v-spacer></v-spacer>
 
         <v-toolbar-items>
-          <v-btn text flat color="grey darken-3" text>Downloads <v-icon right dark>get_app</v-icon>
+          <v-btn text color="grey darken-3" text>Downloads <v-icon right dark>get_app</v-icon>
           </v-btn>
-          <v-btn text flat color="grey darken-3" text>Docs <v-icon right dark>description</v-icon>
+          <v-btn text color="grey darken-3" text>Docs <v-icon right dark>description</v-icon>
           </v-btn>
-          <v-btn text flat color="grey darken-3" text>Publications <v-icon right dark>school</v-icon>
+          <v-btn text color="grey darken-3" text>Publications <v-icon right dark>school</v-icon>
           </v-btn>
         </v-toolbar-items>
-      </v-toolbar>
+      </v-app-bar>
 
-      <v-card color="white" flat>
+
+      <v-content>
+        </v-container>
+
+
         <v-container>
 
-        </v-container>
-      </v-card>
-      <v-card color="white" flat>
-          <v-container>
-  
-          </v-container>
-        </v-card>
-
-      <v-container grid-list-md text-center>
-        <v-layout wrap align-center justify-center>
-          <v-flex xs6 md2>
-            <v-card color="white" flat>
-              <v-container>
-                <v-avatar size="106">
-                  <img src="images/rize2.png" alt="avatar">
-                </v-avatar>
-              </v-container>
-            </v-card>
-          </v-flex>
-          <v-flex xs6 md5>
-            <v-card color="white" flat>
+          <v-container grid-list-md text-center>
+            <v-layout wrap align-center justify-center>
+              <v-flex xs6 md2>
+                <v-card color="white" flat>
+                  <v-container>
+                    <v-avatar size="106">
+                      <img src="images/rize2.png" alt="avatar">
+                    </v-avatar>
+                  </v-container>
+                </v-card>
+              </v-flex>
+              <v-flex xs6 md5>
+                <v-card color="white" flat>
 
 
-              <div><span style=" color:#424242; font-size: 36px"> <b>R</b>obot <b>I</b>nterfaces from
-                  <b>Z</b>ero
-                  <b>E</b>xperience</span> 
-              </div>
-              <div>&nbsp;</div>
-              <div><span style="font-size: 20px; color:#616161;">RIZE is a platform-independent and accesible end-user robot programming
-                  enviroment</span></div>
-              <div>&nbsp;</div>
+                  <div><span style=" color:#424242; font-size: 36px"> <b>R</b>obot <b>I</b>nterfaces from
+                      <b>Z</b>ero
+                      <b>E</b>xperience</span>
+                  </div>
+                  <div>&nbsp;</div>
+                  <div><span style="font-size: 20px; color:#616161;">RIZE is a platform-independent and accesible
+                      end-user
+                      robot programming
+                      enviroment</span></div>
+                  <div>&nbsp;</div>
 
-              <v-btn color="blue darken-1" dark>Download BETA</v-btn>
-              <v-btn outline color="blue darken-1" dark>Get Started</v-btn>
+                  <v-btn color="blue darken-1" dark>Download BETA</v-btn>
+                  <v-btn outlined color="blue darken-1" dark>Get Started</v-btn>
 
 
-          </v-flex>
-        </v-layout>
-      </v-container>
+              </v-flex>
+            </v-layout>
 
-      <v-container fluid grid-list-xl>
+            <v-container fluid grid-list-xl>
+              <v-flex xs12>
+                <v-card color="white" flat>
+                  &emsp;
+                </v-card>
+              </v-flex>
 
-        <v-layout justify-center>
-          <v-flex xs6 md3>
-            <v-card flat color="white" min-width="200">
-              <v-card-title>
-                <p style="color:#1E88E5; font-size:23px;">
-                  User-friendly
-                </p>
-              </v-card-title>
-              <v-card-text<p style="font-size:16px;">Designed to be easy-to-install and use </p>
-                </v-card-text>
-            </v-card>
-          </v-flex>
 
-          <v-flex xs6 md3>
-            <v-card flat color="white" min-width="200">
-                <v-card-title>
-                    <p style="color:#1E88E5; font-size:23px;">
-                     Cross-platform
-                    </p>
-                  </v-card-title>
-                  <v-card-text<p style="font-size:16px;">Runs in Windows, OSX 10 and Linux</p>
-                    </v-card-text>
-            </v-card>
-          </v-flex>
+              <v-layout justify-center>
+                <v-flex xs3 md3>
+                  <v-card flat color="white" min-width="200" max-width="300">
+                    <v-card-title>
+                      <p style="color:#1E88E5; font-size:23px;">
+                        User-friendly
+                      </p>
+                    </v-card-title>
+                    <v-card-text<p style="font-size:16px;">Designed to be easy-to-install and use </p>
+                      </v-card-text>
+                  </v-card>
+                </v-flex>
 
-          <v-flex xs6 md2>
-              <v-card flat color="white" min-width="260"> 
-                  <v-card-title>
+                <v-flex xs3 md3>
+                  <v-card flat color="white" min-width="200" max-width="300">
+                    <v-card-title>
+                      <p style="color:#1E88E5; font-size:23px;">
+                        Cross-platform
+                      </p>
+                    </v-card-title>
+                    <v-card-text<p style="font-size:16px;">Runs in Windows, OSX 10 and Linux</p>
+                      </v-card-text>
+                  </v-card>
+                </v-flex>
+
+                <v-flex xs3 md3>
+                  <v-card flat color="white" min-width="260" max-width="300">
+                    <v-card-title>
                       <p style="color:#1E88E5; font-size:23px;">
                         Modular
                       </p>
                     </v-card-title>
-                    <v-card-text<p style="font-size:16px;">Use component-based distributed systems </p>
+                    <v-card-text<p style="font-size:16px;">Is component-based and distributed</p>
                       </v-card-text>
-              </v-card>
-            </v-flex>
+                  </v-card>
+                </v-flex>
 
 
-        </v-layout>
-      </v-container>
+              </v-layout>
+            </v-container>
+            <v-card color="white" flat>
+              <v-img src="/images/rize.png"
+                aspect-ratio="1" class="grey lighten-2" max-width="500" max-height="300"></v-img>
+            </v-card>
+          </v-container>
+      </v-content>
 
 
-      </v-card>
-      </v-flex>
-      <v-footer
-      dark
-      padless
-    >
-      <v-card
-        class="flex"
-        flat
-        tile
-      >
-        <v-card-title class="teal">
-          <v-spacer></v-spacer>
-          <strong class="subheading">RIZE is based in NEP</strong>  
-          <v-btn icon href="https://enriquecoronadozu.github.io/learn-nep/" target="_blank" dark icon>
-            <v-icon size="24px">fab fa-github </v-icon>
-          </v-btn>
-        </v-card-title>
-  
-        <v-card-actions class="grey darken-3 justify-center">
-          {{ new Date().getFullYear() }} —  <strong> GVlab</strong>
-        </v-card-actions>
-      </v-card>
-    </v-footer>
+
+
+
+      <v-footer color="teal" app>
+        <v-spacer></v-spacer>
+        <span class="white--text">&copy; 2019</span>
+      </v-footer>
     </v-app>
-  </div> <!-- vue App -->
+  </div>
 
 
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      vuetify: new Vuetify(),
+      data: () => ({
+        dialog: false,
+        items: [
+          { title: 'Dashboard', icon: 'dashboard' },
+          { title: 'Account', icon: 'account_box' },
+          { title: 'Admin', icon: 'gavel' },
+        ],
 
-
-  </v-app>
-  </div> <!-- vue App -->
-
+      }),
+    })
+  </script>
 </body>
-
-<script src="web/vueApp.js"></script>
-
 
 </html>
