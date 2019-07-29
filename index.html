@@ -71,7 +71,7 @@
                       enviroment</span></div>
                   <div>&nbsp;</div>
 
-                  <v-btn color="blue darken-1" dark>Download BETA</v-btn>
+                  <v-btn @click="dialog = true" color="blue darken-1" dark>Download BETA</v-btn>
                   <v-btn outlined color="blue darken-1" dark>Get Started</v-btn>
 
 
@@ -132,8 +132,8 @@
             <v-layout justify-center>
               <v-flex xs4 md3>
                 <v-card color="white" flat>
-                  <v-img src="images/rize.png" aspect-ratio="1" class="grey lighten-2" max-width="500"
-                    max-height="500"></v-img>
+                  <v-img src="images/rize.png" aspect-ratio="1" class="grey lighten-2" max-width="500" max-height="500">
+                  </v-img>
                 </v-card>
               </v-flex>
             </v-layout>
@@ -149,6 +149,81 @@
         <v-spacer></v-spacer>
         <span class="white--text">&copy; 2019</span>
       </v-footer>
+
+      <v-dialog v-model="dialog" max-width="500px">
+        <v-card>
+          <v-card-title>
+            Install in order:
+          </v-card-title>
+          <v-stepper v-model="e6" vertical>
+            <v-stepper-step :complete="e6 > 1" step="1" editable>
+              Python 2
+              <small>Don't use conda or pycharm versions</small>
+            </v-stepper-step>
+
+            <v-stepper-content step="1">
+              
+
+                <v-layout justify-center>
+                  <v-flex xs6>
+                    <v-btn href="https://www.python.org/ftp/python/2.7.16/python-2.7.16.msi" target="_blank" color="primary">Download Python 2</v-btn>
+                  </v-flex>
+                </v-layout>
+           
+
+            </v-stepper-content>
+
+            <v-stepper-step editable :complete="e6 > 2" step="2">RIZE configuration files <small>Install in C:/Rize</small></v-stepper-step>
+
+            <v-stepper-content step="2">
+              <v-layout justify-center>
+                <v-flex xs8>
+                  <v-btn href="https://github.com/enriquecoronadozu/RIZE/releases/download/v0.9-beta.2/rize_files_installer_0.1.exe" target="_blank" color="primary">Download RIZE files</v-btn>
+                </v-flex>
+            </v-stepper-content>
+
+            <v-stepper-step editable :complete="e6 > 3" step="3">Pepper software </v-stepper-step>
+
+            <v-stepper-content step="3">
+              <v-layout justify-center>
+                <v-flex xs8>
+                  <v-btn href="https://github.com/enriquecoronadozu/RIZE/releases/download/v0.9-beta.2/pynaoqi-2.4.3.2.win32.exe" target="_blank" color="primary">Download Pepper software</v-btn>
+                </v-flex>
+              </v-layout>
+            </v-stepper-content>
+
+
+            <v-stepper-step editable :complete="e6 > 4" step="4">RIZE robot configuration interface</v-stepper-step>
+
+            <v-stepper-content step="4">
+              <v-layout justify-center>
+                <v-flex xs8>
+                  <v-btn href="https://github.com/enriquecoronadozu/RIZE/releases/download/v0.9-beta.2/RIZE.Robots.Setup.1.0.0.exe" target="_blank" color="primary">Download RIZE Robots</v-btn>
+                </v-flex>
+              </v-layout>
+            </v-stepper-content>
+
+
+            <v-stepper-step editable :complete="e6 > 5" step="5">RIZE programming interface</v-stepper-step>
+
+            <v-stepper-content step="5">
+              <v-layout justify-center>
+                <v-flex xs6>
+                  <v-btn href="https://github.com/enriquecoronadozu/RIZE/releases/download/v0.9-beta.2/RIZE.Setup.0.9.0.exe" target="_blank" color="primary">Download RIZE</v-btn>
+                </v-flex>
+              </v-layout>
+            </v-stepper-content>
+
+
+          </v-stepper>
+          <v-card-actions>
+            <v-btn color="primary" text @click="dialog2 = false">
+              Close
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+
     </v-app>
   </div>
 
@@ -161,10 +236,25 @@
       vuetify: new Vuetify(),
       data: () => ({
         dialog: false,
+        e6: 1,
         items: [
           { title: 'Dashboard', icon: 'dashboard' },
           { title: 'Account', icon: 'account_box' },
           { title: 'Admin', icon: 'gavel' },
+        ],
+        colors: [
+          'indigo',
+          'warning',
+          'pink darken-2',
+          'red lighten-1',
+          'deep-purple accent-4',
+        ],
+        slides: [
+          'First',
+          'Second',
+          'Third',
+          'Fourth',
+          'Fifth',
         ],
 
       }),
