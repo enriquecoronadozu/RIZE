@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="author" content="Enrique Coronado" />
   <title>Rize</title>
+  <link rel="shortcut icon" type="image/png" href="images/rize2.png"/>
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/@mdi/font@3.x/css/materialdesignicons.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
@@ -25,6 +26,14 @@
 
 
       <v-app-bar flat app dense color="white">
+
+
+        <v-avatar size="35">
+          <img src="images/rize2.png" alt="avatar">
+        </v-avatar> &nbsp; &nbsp;
+        <v-toolbar-title>
+          RIZE
+        </v-toolbar-title>
 
         <v-spacer></v-spacer>
 
@@ -162,23 +171,27 @@
             </v-stepper-step>
 
             <v-stepper-content step="1">
-              
 
-                <v-layout justify-center>
-                  <v-flex xs6>
-                    <v-btn href="https://www.python.org/ftp/python/2.7.16/python-2.7.16.msi" target="_blank" color="primary">Download Python 2</v-btn>
-                  </v-flex>
-                </v-layout>
-           
+
+              <v-layout justify-center>
+                <v-flex xs6>
+                  <v-btn href="https://www.python.org/ftp/python/2.7.16/python-2.7.16.msi" target="_blank"
+                    color="primary">Download Python 2</v-btn>
+                </v-flex>
+              </v-layout>
+
 
             </v-stepper-content>
 
-            <v-stepper-step editable :complete="e6 > 2" step="2">RIZE configuration files <small>Install in C:/Rize</small></v-stepper-step>
+            <v-stepper-step editable :complete="e6 > 2" step="2">RIZE configuration files <small>Install in
+                C:/Rize</small></v-stepper-step>
 
             <v-stepper-content step="2">
               <v-layout justify-center>
                 <v-flex xs8>
-                  <v-btn href="https://github.com/enriquecoronadozu/RIZE/releases/download/v0.9-beta.2/rize_files_installer_0.1.exe" target="_blank" color="primary">Download RIZE files</v-btn>
+                  <v-btn
+                    href="https://github.com/enriquecoronadozu/RIZE/releases/download/v0.9-beta.2/rize_files_installer_0.1.exe"
+                    target="_blank" color="primary">Download RIZE files</v-btn>
                 </v-flex>
             </v-stepper-content>
 
@@ -187,7 +200,9 @@
             <v-stepper-content step="3">
               <v-layout justify-center>
                 <v-flex xs8>
-                  <v-btn href="https://github.com/enriquecoronadozu/RIZE/releases/download/v0.9-beta.2/pynaoqi-2.4.3.2.win32.exe" target="_blank" color="primary">Download Pepper software</v-btn>
+                  <v-btn
+                    href="https://github.com/enriquecoronadozu/RIZE/releases/download/v0.9-beta.2/pynaoqi-2.4.3.2.win32.exe"
+                    target="_blank" color="primary">Download Pepper software</v-btn>
                 </v-flex>
               </v-layout>
             </v-stepper-content>
@@ -198,7 +213,9 @@
             <v-stepper-content step="4">
               <v-layout justify-center>
                 <v-flex xs8>
-                  <v-btn href="https://github.com/enriquecoronadozu/RIZE/releases/download/v0.9-beta.2/RIZE.Robots.Setup.1.0.0.exe" target="_blank" color="primary">Download RIZE Robots</v-btn>
+                  <v-btn
+                    href="https://github.com/enriquecoronadozu/RIZE/releases/download/v0.9-beta.2/RIZE.Robots.Setup.1.0.0.exe"
+                    target="_blank" color="primary">Download RIZE Robots</v-btn>
                 </v-flex>
               </v-layout>
             </v-stepper-content>
@@ -209,7 +226,9 @@
             <v-stepper-content step="5">
               <v-layout justify-center>
                 <v-flex xs6>
-                  <v-btn href="https://github.com/enriquecoronadozu/RIZE/releases/download/v0.9-beta.2/RIZE.Setup.0.9.0.exe" target="_blank" color="primary">Download RIZE</v-btn>
+                  <v-btn
+                    href="https://github.com/enriquecoronadozu/RIZE/releases/download/v0.9-beta.2/RIZE.Setup.0.9.0.exe"
+                    target="_blank" color="primary">Download RIZE</v-btn>
                 </v-flex>
               </v-layout>
             </v-stepper-content>
