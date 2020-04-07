@@ -5,8 +5,8 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="author" content="Enrique Coronado" />
-  <title>Rize</title>
-  <link rel="shortcut icon" type="image/png" href="images/rize2.png"/>
+  <link rel="shortcut icon" type="image/png" href="images/rize2.png" />
+  <title>RIZE</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/@mdi/font@3.x/css/materialdesignicons.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
@@ -27,7 +27,7 @@
 
       <v-app-bar flat app dense color="white">
 
-
+     
         <v-avatar size="35">
           <img src="images/rize2.png" alt="avatar">
         </v-avatar> &nbsp; &nbsp;
@@ -38,9 +38,11 @@
         <v-spacer></v-spacer>
 
         <v-toolbar-items>
-          <v-btn text color="grey darken-3" text>Downloads <v-icon right dark>get_app</v-icon>
+          <v-btn text color="grey darken-3" text>Downloads <v-icon right dark>mdi-download</v-icon>
           </v-btn>
-          <v-btn text color="grey darken-3" text>Docs <v-icon right dark>description</v-icon>
+          <v-btn text color="grey darken-3" text>Robots <v-icon right dark>mdi-robot-industrial</v-icon>
+          </v-btn>
+          <v-btn text color="grey darken-3" text>Documentation <v-icon right dark>description</v-icon>
           </v-btn>
           <v-btn text color="grey darken-3" text>Publications <v-icon right dark>school</v-icon>
           </v-btn>
@@ -56,32 +58,31 @@
 
           <v-container grid-list-md text-center>
             <v-layout wrap align-center justify-center>
-              <v-flex xs6 md2>
+
+              
+              <v-flex xs7 md4>
                 <v-card color="white" flat>
+                  <div><span style=" color:#424242; font-size: 36px"> <b>R</b>obot <b>I</b>nterfaces from
+                    <b>Z</b>ero
+                    <b>E</b>xperience</span>
+                </div>
                   <v-container>
-                    <v-avatar size="106">
+                    <v-avatar size="75">
                       <img src="images/rize2.png" alt="avatar">
                     </v-avatar>
                   </v-container>
-                </v-card>
-              </v-flex>
-              <v-flex xs6 md5>
-                <v-card color="white" flat>
 
-
-                  <div><span style=" color:#424242; font-size: 36px"> <b>R</b>obot <b>I</b>nterfaces from
-                      <b>Z</b>ero
-                      <b>E</b>xperience</span>
-                  </div>
-                  <div>&nbsp;</div>
-                  <div><span style="font-size: 20px; color:#616161;">RIZE is a human-centered end-user robot programming enviroment</span></div>
-                  <div>&nbsp;</div>
-
-                  <v-btn @click="dialog = true" color="blue darken-1" dark>Download BETA</v-btn>
-                  <v-btn outlined color="blue darken-1" dark>Get Started</v-btn>
+                <div>&nbsp;</div>
+                <div><span style="font-size: 20px; color:#616161;">RIZE is user-friendly and modular
+                    end-user
+                    development
+                    framework for robotics</span></div>
+                <div>&nbsp;</div>
 
 
               </v-flex>
+
+         
             </v-layout>
 
             <v-container fluid grid-list-xl>
@@ -94,54 +95,32 @@
 
               <v-layout justify-center>
 
+     
 
 
-                <v-flex xs4 md3>
-                  <v-card flat color="white" min-width="200" max-width="300">
-                    <v-card-title>
-                      <p style="color:#1E88E5; font-size:23px;">
-                        User-friendly
-                      </p>
-                    </v-card-title>
-                    <v-card-text<p style="font-size:16px;">Designed to be easy-to-install and use </p>
-                      </v-card-text>
-                  </v-card>
+
+                <v-flex xs8>
+
+                  <div class="text-center">
+                    <v-btn rounded class="ma-2"  color="blue darken-2" dark>  <v-icon left>mdi-download</v-icon> Download RIZE</v-btn>
+                    <v-btn rounded class="ma-2" href="https://github.com/enriquecoronadozu/pepper" target="_blank" outlined color="blue darken-2">
+                      <v-icon left>mdi-robot-industrial</v-icon> Robot's set up 
+                    </v-btn>
+                    <v-btn rounded class="ma-2"  outlined color="blue darken-2">
+                      <v-icon left>mdi-file-document</v-icon> Get started
+                    </v-btn>
+                  </div>                     
+            
                 </v-flex>
 
-                <v-flex xs4 md3>
-                  <v-card flat color="white" min-width="200" max-width="300">
-                    <v-card-title>
-                      <p style="color:#1E88E5; font-size:23px;">
-                        Cross-platform
-                      </p>
-                    </v-card-title>
-                    <v-card-text<p style="font-size:16px;">Runs in Windows, OSX 10 and Linux</p>
-                      </v-card-text>
-                  </v-card>
-                </v-flex>
+     
 
-                <v-flex xs4 md3>
-                  <v-card flat color="white" min-width="260" max-width="300">
-                    <v-card-title>
-                      <p style="color:#1E88E5; font-size:23px;">
-                        Modular
-                      </p>
-                    </v-card-title>
-                    <v-card-text<p style="font-size:16px;">Is component-based and distributed</p>
-                      </v-card-text>
-                  </v-card>
-                </v-flex>
 
 
               </v-layout>
             </v-container>
             <v-layout justify-center>
-              <v-flex xs4 md3>
-                <v-card color="white" flat>
-                  <v-img src="images/rize.png" aspect-ratio="1" class="grey lighten-2" max-width="500" max-height="500">
-                  </v-img>
-                </v-card>
-              </v-flex>
+
             </v-layout>
 
           </v-container>
@@ -156,89 +135,7 @@
         <span class="white--text">&copy; 2019</span>
       </v-footer>
 
-      <v-dialog v-model="dialog" max-width="500px">
-        <v-card>
-          <v-card-title>
-            Install in order:
-          </v-card-title>
-          <v-stepper v-model="e6" vertical>
-            <v-stepper-step :complete="e6 > 1" step="1" editable>
-              Python 2
-              <small>Don't use conda or pycharm versions</small>
-            </v-stepper-step>
 
-            <v-stepper-content step="1">
-
-
-              <v-layout justify-center>
-                <v-flex xs6>
-                  <v-btn href="https://www.python.org/ftp/python/2.7.16/python-2.7.16.msi" target="_blank"
-                    color="primary">Download Python 2</v-btn>
-                </v-flex>
-              </v-layout>
-
-
-            </v-stepper-content>
-
-            <v-stepper-step editable :complete="e6 > 2" step="2">RIZE configuration files <small>Install in
-                C:/Rize</small></v-stepper-step>
-
-            <v-stepper-content step="2">
-              <v-layout justify-center>
-                <v-flex xs8>
-                  <v-btn
-                    href="https://github.com/enriquecoronadozu/RIZE/releases/download/v0.9-beta.2/rize_files_installer_0.1.exe"
-                    target="_blank" color="primary">Download RIZE files</v-btn>
-                </v-flex>
-            </v-stepper-content>
-
-            <v-stepper-step editable :complete="e6 > 3" step="3">Pepper software </v-stepper-step>
-
-            <v-stepper-content step="3">
-              <v-layout justify-center>
-                <v-flex xs8>
-                  <v-btn
-                    href="https://github.com/enriquecoronadozu/RIZE/releases/download/v0.9-beta.2/pynaoqi-2.4.3.2.win32.exe"
-                    target="_blank" color="primary">Download Pepper software</v-btn>
-                </v-flex>
-              </v-layout>
-            </v-stepper-content>
-
-
-            <v-stepper-step editable :complete="e6 > 4" step="4">RIZE robot configuration interface</v-stepper-step>
-
-            <v-stepper-content step="4">
-              <v-layout justify-center>
-                <v-flex xs8>
-                  <v-btn
-                    href="https://github.com/enriquecoronadozu/RIZE/releases/download/v0.9-beta.2/RIZE.Robots.Setup.1.0.0.exe"
-                    target="_blank" color="primary">Download RIZE Robots</v-btn>
-                </v-flex>
-              </v-layout>
-            </v-stepper-content>
-
-
-            <v-stepper-step editable :complete="e6 > 5" step="5">RIZE programming interface</v-stepper-step>
-
-            <v-stepper-content step="5">
-              <v-layout justify-center>
-                <v-flex xs6>
-                  <v-btn
-                    href="https://github.com/enriquecoronadozu/RIZE/releases/download/v0.9-beta.2/RIZE.Setup.0.9.0.exe"
-                    target="_blank" color="primary">Download RIZE</v-btn>
-                </v-flex>
-              </v-layout>
-            </v-stepper-content>
-
-
-          </v-stepper>
-          <v-card-actions>
-            <v-btn color="primary" text @click="dialog2 = false">
-              Close
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
 
     </v-app>
   </div>
