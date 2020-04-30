@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="author" content="Enrique Coronado" />
-  <title>Pepper tutorial</title>
+  <title>NAO tutorial</title>
   <link rel="shortcut icon" type="image/png" href="images/rize2.png" />
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/@mdi/font@3.x/css/materialdesignicons.min.css" rel="stylesheet">
@@ -32,7 +32,7 @@
           <img src="images/rize2.png" alt="avatar">
         </v-avatar> &nbsp; &nbsp;
         <v-toolbar-title>
-          Pepper robot configuration
+          NAO robot configuration
         </v-toolbar-title>
 
         <v-spacer></v-spacer>
@@ -67,7 +67,7 @@
               <v-flex xs8 md8>
                 <v-card color="white" flat>
                   <v-card-title>
-                    <div><span style=" color:#424242; font-size: 32px"> Getting Started with Pepper
+                    <div><span style=" color:#424242; font-size: 32px"> Getting Started with NAO
                     </div>
                   </v-card-title>
 
@@ -80,9 +80,9 @@
                         With this tutorial you will learn:
 
                         <ul style="font-size: 15px; color:#616161; text-align: justify">
-                          <li>How to install Pepper software in your PC (Windows)</li>
-                          <li>How to connect Pepper to RIZE </li>
-                          <li>How to connect a simulated Pepper robot (in Choregraphe) to RIZE </li>
+                          <li>How to install NAO software in your PC (Windows)</li>
+                          <li>How to connect NAO to RIZE </li>
+                          <li>How to connect a simulated NAO robot (in Choregraphe) to RIZE </li>
                         </ul>
 
 
@@ -101,13 +101,13 @@
                 <v-card color="white" flat>
 
                   <v-card-title>
-                    <p style=" color:#424242; font-size: 25px"> Install Software of Pepper (Windows)</p>
+                    <p style=" color:#424242; font-size: 25px"> Install Software of NAO (Windows)</p>
                   </v-card-title>
                   <v-divider></v-divider>
                   <div>&nbsp;</div>
                   <v-card-text>
                     <div>
-                      <p style="font-size: 15px; color:#616161; text-align: justify"> <b> Pepper requires the
+                      <p style="font-size: 15px; color:#616161; text-align: justify"> <b> NAO requires the
                           installation
                           of
                           Python 2.7 from the official <a href="https://www.python.org/" target="_blank"></a>Python
@@ -209,12 +209,12 @@
                       <p style="font-size: 15px; color:#616161; text-align: justify">
 
 
-                        <b>Download and install NAO/Pepper SDK</b> from the next link:</p>
+                        <b>Download and install NAO SDK</b> from the next link:</p>
 
                       <v-btn rounded outlined class="ma-2"
                         href="https://github.com/enriquecoronadozu/RIZE/releases/download/v0.9-beta.2/pynaoqi-2.4.3.2.win32.exe"
                         target="_blank" color="blue darken-2" dark>
-                        <v-icon left>mdi-download</v-icon> Download NAO/Pepper SDK
+                        <v-icon left>mdi-download</v-icon> Download NAO SDK
                       </v-btn>
 
                     </div>
@@ -230,59 +230,59 @@
               <v-flex xs8 md8>
                 <v-card color="white" flat>
                   <v-card-title>
-                    <p style=" color:#424242; font-size: 25px"> Connect Pepper to RIZE </p>
+                    <p style=" color:#424242; font-size: 25px"> Connect NAO to RIZE </p>
                   </v-card-title>
                   <v-divider></v-divider>
                   <div>&nbsp;</div>
                   <v-card-text>
 
                     <v-alert border="top" color="red lighten-2" dark>
-                      <b> Pepper and your PC must be in the same Wifi network. </b> A very common error is to have
-                      Pepper and the PC in different Wifi networks.
+                      <b> NAO and your PC must be in the same Wifi network. </b> A very common error is to have
+                      NAO and the PC in different Wifi networks.
 
 
                     </v-alert>
                     <div>&nbsp;</div>
 
                     <p style="font-size: 15px; color:#616161; text-align: justify">
-                      Open RIZE for Pepper robot and select the button <v-icon>mdi-ip</v-icon> to set the IP address of
+                      Open RIZE for NAO robot and select the button <v-icon>mdi-ip</v-icon> to set the IP address of
                       your robot
                     </p>
                     <div>&nbsp;</div>
                     <img src="images/top_pepper.png" alt="python 2" class="center" style="width: 100%;">
                     <div>&nbsp;</div>
                     <p style="font-size: 15px; color:#616161; text-align: justify">
-                      Press the Pepper's button in its chest (less than a second) to hear the IP
+                      Press the NAO's button in its chest (less than a second) to hear the IP
                       address of the robot.
                     </p>
                     <div>&nbsp;</div>
-                    <img src="images/chest_button.png" alt="python 2" class="center" style="width: 90%;">
+                    <img src="images/chest_nao.png" alt="python 2" class="center" style="width: 90%;">
                     <div>&nbsp;</div>
                     <p style="font-size: 15px; color:#616161; text-align: justify">
                       Then, write the IP (internet) address that the robot dictates in the next interface
                     </p>
                     <div>&nbsp;</div>
-                    <img src="images/ip_pepper.png" alt="python 2" class="center" style="width: 95%;">
+                    <img src="images/ip_nao.png" alt="python 2" class="center" style="width: 95%;">
                     <div>&nbsp;</div>
                     <p style="font-size: 15px; color:#616161; text-align: justify">
                       After writing the right IP address press the button <b>CHANGE</b> to
                       set the value
                     </p>
                     <div>&nbsp;</div>
-                    <img src="images/ip_pepper2.png" alt="python 2" class="center" style="width: 95%;">
+                    <img src="images/ip_nao2.png" alt="python 2" class="center" style="width: 95%;">
                     <div>&nbsp;</div>
                     <p style="font-size: 15px; color:#616161; text-align: justify">
-                      In the <b>Home</b> tab of RIZE Pepper press the button <b>CONNECT Pepper</b> and wait few seconds
+                      In the <b>Home</b> tab of RIZE NAO press the button <b>CONNECT NAO</b> and wait few seconds
                     </p>
                     <div>&nbsp;</div>
-                    <img src="images/connect_pepper.png" alt="python 2" class="center" style="width: 90%;">
+                    <img src="images/connect_NAO.png" alt="python 2" class="center" style="width: 90%;">
                     <div>&nbsp;</div>
                     <p style="font-size: 15px; color:#616161; text-align: justify">
                       The robot will be successfully connected until appears the next message in green (a yellow or red
                       color indicate a problem connecting the robot)
                     </p>
                     <div>&nbsp;</div>
-                    <img src="images/ok_pepper.png" alt="python 2" class="center" style="width: 85%;">
+                    <img src="images/ok_NAO.png" alt="python 2" class="center" style="width: 85%;">
 
 
                     <div>&nbsp;</div>
@@ -322,18 +322,18 @@
                     <div>&nbsp;</div>
 
                     <p style="font-size: 15px; color:#616161; text-align: justify">
-                      Select Virtual Robot tab. Then, in <b> robot model </b> select <b> Pepper Y20 (V16) </b> and press
+                      Select Virtual Robot tab. Then, in <b> robot model </b> select <b> NAO H25 (V50) </b> and press
                       <b> OK </b> to close the window
                     </p>
 
                     <div>&nbsp;</div>
-                    <img src="images/ch3p.png" alt="python 2" class="center" style="width: 75%;">
+                    <img src="images/ch3.png" alt="python 2" class="center" style="width: 75%;">
 
                     <div>&nbsp;</div>
 
 
                     <p style="font-size: 15px; color:#616161; text-align: justify">
-                      Open RIZE for Pepper robot and select the button <v-icon>mdi-ip</v-icon>. We need to ser a port
+                      Open RIZE for NAO robot and select the button <v-icon>mdi-ip</v-icon>. We need to ser a port
                       number from Choregraphe.
                     </p>
                     <div>&nbsp;</div>
@@ -346,25 +346,25 @@
                       of the window opened in this step on Choregraphe as bellow (the number can vary for you).
                     </p>
                     <div>&nbsp;</div>
-                    <img src="images/numberp.png" alt="python 2" class="center" style="width: 80%;">
+                    <img src="images/number.png" alt="python 2" class="center" style="width: 100%;">
                     <div>&nbsp;</div>
                     <p style="font-size: 15px; color:#616161; text-align: justify">
                       In RIZE select the option <b> Use simulator from Choregraphe </b> and set the port number obtained in the previous step
                     </p>
                     <div>&nbsp;</div>
-                    <img src="images/chp.png" alt="python 2" class="center" style="width: 75%;">
+                    <img src="images/ch.png" alt="python 2" class="center" style="width: 75%;">
                      <p style="font-size: 15px; color:#616161; text-align: justify">
-                      In the <b>Home</b> tab of RIZE Pepper press the button <b>CONNECT Pepper</b> and wait few seconds
+                      In the <b>Home</b> tab of RIZE NAO press the button <b>CONNECT NAO</b> and wait few seconds
                     </p>
                     <div>&nbsp;</div>
-                    <img src="images/connect_pepper.png" alt="python 2" class="center" style="width: 90%;">
+                    <img src="images/connect_NAO.png" alt="python 2" class="center" style="width: 90%;">
                     <div>&nbsp;</div>
                     <p style="font-size: 15px; color:#616161; text-align: justify">
                       The robot will be successfully connected until appears the next message in green (a yellow or red
                       color indicate a problem connecting the robot)
                     </p>
                     <div>&nbsp;</div>
-                    <img src="images/ok_pepper.png" alt="python 2" class="center" style="width: 85%;">
+                    <img src="images/ok_NAO.png" alt="python 2" class="center" style="width: 85%;">
 
 
                     <div>&nbsp;</div>
