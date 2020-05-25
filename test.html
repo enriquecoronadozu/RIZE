@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <p>This is a paragraph.</p>
+    <p>This is a paragraph.</p>
+    <p>This is a paragraph.</p>
+
+</body>
+
+
+<script type="text/javascript" src="/libs/qimessaging/1.0/socket.io.min.js"></script>
+<script type="text/javascript" src="/libs/qimessaging/1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/libs/qimessaging/1.0/qimessaging.js"></script>
+
+</html>
+
+<script>
+    var host = "192.168.2.34";
+
+    function connected() {
+        console.log("connected");
+    }
+
+    function disconnected() {
+        console.log("disconnected");
+    }
+
+    var session = new QiSession(host);
+    session.socket().on("connect", connected);
+    session.socket().on("disconnect", disconnected);
+</script>
