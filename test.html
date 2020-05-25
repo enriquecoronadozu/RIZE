@@ -10,9 +10,9 @@
 </body>
 
 
-<script type="text/javascript" src="/libs/qimessaging/1.0/socket.io.min.js"></script>
-<script type="text/javascript" src="/libs/qimessaging/1.0/jquery.min.js"></script>
-<script type="text/javascript" src="/libs/qimessaging/1.0/qimessaging.js"></script>
+<script type="text/javascript" src="libs/qimessaging/1.0/socket.io.min.js"></script>
+<script type="text/javascript" src="libs/qimessaging/1.0/jquery.min.js"></script>
+<script type="text/javascript" src="libs/qimessaging/1.0/qimessaging.js"></script>
 
 </html>
 
@@ -30,4 +30,17 @@
     var session = new QiSession(host);
     session.socket().on("connect", connected);
     session.socket().on("disconnect", disconnected);
+
+    function say(text) {
+        session.service("ALTextToSpeech").done(function (tts) {
+            tts.say(text)
+            // tts is a proxy to the ALTextToSpeech service
+        }).fail(function (error) {
+            console.log("An error occurred:", error);
+        });
+
+    }
+
+
+
 </script>
