@@ -20,7 +20,7 @@ function QiSession(host, resource)
   if (resource == undefined)
     resource = "libs/qimessaging/1.0/socket.io";
   if (host.substring(0, 7) != "http://")
-    host = "http://" + host;
+    host = "https://" + host;
 
   var _socket = io.connect(host, { resource: resource });
   var _dfd = new Array();
