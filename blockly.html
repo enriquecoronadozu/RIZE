@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+
+  <!-- ################# Google Blockly realted stuff  ######################## -->
+  <!-- <script src="C:/Rize/blockly/blockly_uncompressed.js"></script> -->
+  <!-- In internet mode better uncomment the next line -->
+  <script src="developer/blockly_static/blockly_compressed.js"></script>
+  <script src="developer/blockly_static/en.js"></script>
+  <!-- We need to run build.py in order to add our blocks, this are saved in this script -->
+  <script src="developer/blockly_dynamic/blocks_compressed.js"></script>
+  <!-- Here the code generation scripts are added for each programming lenguage used -->
+  <script src="developer/blockly_dynamic/javascript_compressed.js?"></script>
+
+  <!--  ************** Blockly Workspace definition ***************** -->
+  <script src="developer/workspace.js?"></script>
+  <link href="design.css" rel="stylesheet" />
+
+  <!-- Main -->
+  <script src="rize/rizeBlockly.js"></script>
+  <script src="rize/rizeBlocks.js"></script>
+
+  <script type="text/javascript" src="libs/qimessaging/1.0/socket.io.min.js"></script>
+  <script type="text/javascript" src="libs/qimessaging/1.0/jquery.min.js"></script>
+  <script type="text/javascript" src="libs/qimessaging/1.0/qimessaging.js"></script>
+
+
+</head>
+
+<body>
+  <div style="height: 50px;">
+    <div id="app" style="height: 50px;">
+      <v-app id="inspire" style="height: 50px;">
+        <v-content>
+          <v-app-bar color="indigo darken-1" clipped-right dense dark promminent flat>
+
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on }">
+                <v-btn class="mx-4" @click="onOpen" text v-on="on">
+                  <v-icon>mdi-folder-open</v-icon>
+                </v-btn>
+              </template>
+              <span>Load</span>
+            </v-tooltip>
+
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on }">
+                <v-btn class="mx-4" v-on:click="onSaveXML" text v-on=" on">
+                  <v-icon>mdi-file-download</v-icon>
+                </v-btn>
+              </template>
+              <span>Save</span>
+            </v-tooltip>
+
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on }">
+                <v-btn class="mx-4" v-on:click="onOpenWifi" text v-on="on">
+                  <v-icon>mdi-wifi</v-icon>
+                </v-btn>
+              </template>
+              <span>Connect robot</span>
+            </v-tooltip>
+
+
+            <v-spacer></v-spacer>
+            <v-chip class="ma-2" :color="color" label text-color="white">
+              <v-icon left>{{icon}}</v-icon>
+              {{message}}
+            </v-chip>
+
+            <v-spacer></v-spacer>
+
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on }">
+                <v-btn class="mx-4" v-on:click="onPlay" text v-on="on">
+                  <v-icon>mdi-play</v-icon>
+                </v-btn>
+              </template>
+              <span>Run program</span>
+            </v-tooltip>
+
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on }">
+                <v-btn class="mx-4" text v-on="on">
+                  <v-icon>mdi-stop</v-icon>
+                </v-btn>
+              </template>
+              <span>Stop program</span>
+            </v-tooltip>
+
+
+            <v-dialog v-model="dialog_load" persistent max-width="400px">
+              </v-btn>
+              <v-card>
+                <v-toolbar flat dense dark color="pink darken-4">
+                  <v-btn icon dark v-on:click="onClose">
+                    <v-icon>mdi-close</v-icon>
+                  </v-btn>
+                  <v-toolbar-title>Load XML</v-toolbar-title>
+                  <v-spacer></v-spacer>
+                  <v-icon>mdi-folder-open</v-icon>
+                  <v-toolbar-items></v-toolbar-items>
+                </v-toolbar>
+                <v-container fluid grid-list-xl>
+                  <v-layout wrap align-center>
+                    <v-flex xs12 sm12 d-flex></v-flex>
+                    <div class="headline"><span style="font-size: 20px"> &nbsp; Copy and paste XML content: </span>
+                    </div>
+                    </v-flex>
+                    <v-flex xs12 sm12 d-flex>
+                      <v-textarea name="input-7-1" 
+                        v-model="text"
+                        ></v-textarea>
+                    </v-flex>
+                  </v-layout>
+
+                  <div>
+                  </div>
+                  <v-spacer></v-spacer>
+                  <v-layout wrap align-center>
+                    &nbsp;
+                    <v-spacer></v-spacer>
+                    <v-btn outlined color="primary" v-on:click="onButtonClick" dark> Load
+                    </v-btn>
+                    &nbsp;
+                    &nbsp;
+                  </v-layout>
+                </v-container>
+              </v-card>
+            </v-dialog>
+
+
+            <v-dialog v-model="dialog_connect" persistent max-width="400px">
+              </v-btn>
+              <v-card>
+                <v-toolbar flat dense dark color="pink darken-4">
+                  <v-btn icon dark v-on:click="onCloseWifi">
+                    <v-icon>mdi-close</v-icon>
+                  </v-btn>
+                  <v-toolbar-title>Robot IP</v-toolbar-title>
+                  <v-spacer></v-spacer>
+                  <v-icon>mdi-wifi</v-icon>
+                  <v-toolbar-items></v-toolbar-items>
+                </v-toolbar>
+                <v-container fluid grid-list-xl>
+                  <v-layout wrap align-center>
+                    <v-flex xs12 sm12 d-flex></v-flex>
+                    <div class="headline"><span style="font-size: 20px"> &nbsp; Set IP address of the robot: </span>
+                    </div>
+                    </v-flex>
+                    <v-flex xs12 sm12 d-flex>
+                      <v-text-field v-model="robot_ip" required></v-text-field>
+                    </v-flex>
+                  </v-layout>
+
+                  <div>
+                  </div>
+                  <v-spacer></v-spacer>
+                  <v-layout wrap align-center>
+                    &nbsp;
+                    <v-spacer></v-spacer>
+                    <v-btn outlined color="primary" v-on:click="onConnect" dark> Connect
+                    </v-btn>
+                    &nbsp;
+                    &nbsp;
+                  </v-layout>
+                </v-container>
+              </v-card>
+            </v-dialog>
+            </v-menu>
+          </v-app-bar>
+        </v-content>
+      </v-app>
+
+    </div>
+    <div id="main" style="width:95%;height: 90%; top: 80px; position: absolute;  z-index: 999"">
+      <!-- main -->
+      <div id=" blocklyArea"style="width:100%;height: 89%;">
+      <!-- blocklyArea -->
+      <div id="blocklyDiv" style="width:100%;height: 89%;"></div>
+      <p></p>&nbsp;
+    </div> <!-- blocklyArea -->
+  </div> <!-- main -->
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+  <script>
+    var AppVue = new Vue({
+      el: '#app',
+      vuetify: new Vuetify(),
+
+      data() {
+
+        return {
+          icon: "mdi-alert-circle-outline",
+          message: "no connected",
+          color: "blue darken-2",
+          robot_ip: "",
+          dialog_load: false,
+          dialog_connect: false,
+          dialog_start: false,
+          text: "",
+        }
+      },
+
+      created() {
+
+        window.addEventListener('resize', this.handleResize)
+      },
+
+      methods: {
+
+        onOpen() {
+          document.getElementById("main").style.zIndex = "1";
+          this.dialog_load = true;
+        },
+
+        onClose() {
+          document.getElementById("main").style.zIndex = "9999";
+          this.dialog_load = false;
+        },
+
+        onButtonClick() {
+         
+            console.log(this.text)
+            xml = Blockly.Xml.textToDom(this.text);
+            WORKSPACE.clear();
+            Blockly.Xml.domToWorkspace(xml, WORKSPACE);
+     
+        },
+
+
+        onOpenWifi() {
+          document.getElementById("main").style.zIndex = "1";
+          this.dialog_connect = true;
+        },
+
+        onCloseWifi() {
+          this.dialog_connect = false;
+          document.getElementById("main").style.zIndex = "9999";
+        },
+
+        onConnect() {
+          connectRobot(this.robot_ip)
+          this.dialog_connect = false;
+        },
+
+        onSaveXML() {
+          onSaveBlocklyXML()
+        },
+
+        onPlay() {
+          RunCode();
+        }
+      }
+
+    })
+  </script>
+</body>
+
+<script src="rize/blockly_code.js"></script>
+<script src="download.js"></script>
+<script src="nao.js"></script>
+<script>
+</script>
+
+
+</html>
