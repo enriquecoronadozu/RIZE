@@ -5,39 +5,56 @@
 
 var toolbox = `<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
 <category name="Robot" colour="#5b80a5">
-<block type="say">
-  <field name="text">hello</field>
+    <block type="say">
+    </block>
+
+    <block type="animated_say">
+    </block>
+
+    <block type="language">
+      <field name="value">English</field>
+    </block>
+
+    <block type="speed">
+    <field name="value">50</field>
+  </block>
+  <block type="pitch">
+    <field name="value">50</field>
+  </block>
+
+    <block type="mode">
+      <field name="led_g">rest</field>
+    </block>
+    <block type="posture">
+      <field name="value">Stand</field>
+    </block>
+
+    <block type="leds">
+      <field name="led_g">FaceLeds</field>
+      <field name="r">0</field>
+      <field name="g">0</field>
+      <field name="b">0</field>
+    </block>
+
+    <block type="showweb">
+      <field name="value">https://www.google.com/</field>
+    </block>
+    <block type="showwebimage">
+      <field name="value">https://www.softbankrobotics.com/emea/sites/default/files/images-content/Pepper_8.png</field>
+    </block>
+  <block type="touched">
+    <field name="value">left</field>
+  </block>
+  <block type="speech">
+    <field name="value">yes</field>
+  </block>
+  <block type="emotion">
+  <field name="value">happy</field>
 </block>
-<block type="posture">
-  <field name="value">Stand</field>
+<block type="human_visible">
+<field name="value">visible</field>
 </block>
-<block type="language">
-  <field name="value">English</field>
-</block>
-<block type="volume">
-  <field name="value">50</field>
-</block>
-<block type="animated_say">
-  <field name="value">hello</field>
-</block>
-<block type="speed">
-  <field name="value">50</field>
-</block>
-<block type="pitch">
-  <field name="value">50</field>
-</block>
-<block type="animation">
-  <field name="value">bored</field>
-</block>
-<block type="speech_set">
-  <field name="value">yes;no</field>
-</block>
-<block type="touched">
-  <field name="value">left</field>
-</block>
-<block type="speech">
-  <field name="value">yes</field>
-</block>
+
 </category>
 <category name="Logic" colour="#5b80a5">
   <block type="controls_if"></block>
