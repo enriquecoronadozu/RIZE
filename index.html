@@ -27,7 +27,7 @@
 
       <v-app-bar flat app dense color="white">
 
-     
+
         <v-avatar size="35">
           <img src="images/rize2.png" alt="avatar">
         </v-avatar> &nbsp; &nbsp;
@@ -37,16 +37,6 @@
 
         <v-spacer></v-spacer>
 
-        <v-toolbar-items>
-          <v-btn text color="grey darken-3" text>Downloads <v-icon right dark>mdi-download</v-icon>
-          </v-btn>
-          <v-btn text color="grey darken-3" text>Robots <v-icon right dark>mdi-robot-industrial</v-icon>
-          </v-btn>
-          <v-btn text color="grey darken-3" text>Documentation <v-icon right dark>description</v-icon>
-          </v-btn>
-          <v-btn text color="grey darken-3" text>Publications <v-icon right dark>school</v-icon>
-          </v-btn>
-        </v-toolbar-items>
       </v-app-bar>
 
 
@@ -59,31 +49,40 @@
           <v-container grid-list-md text-center>
             <v-layout wrap align-center justify-center>
 
-              
-              <v-flex xs7 md4>
+
+              <v-flex xs4>
                 <v-card color="white" flat>
                   <div><span style=" color:#424242; font-size: 36px"> <b>R</b>obot <b>I</b>nterfaces from
-                    <b>Z</b>ero
-                    <b>E</b>xperience</span>
-                </div>
+                      <b>Z</b>ero
+                      <b>E</b>xperience</span>
+                  </div> <div>&nbsp;</div>
                   <v-container>
                     <v-avatar size="75">
                       <img src="images/rize2.png" alt="avatar">
                     </v-avatar>
                   </v-container>
 
-                <div>&nbsp;</div>
-                <div><span style="font-size: 20px; color:#616161;">RIZE is user-friendly and modular
-                    end-user
-                    development
-                    framework for robotics</span></div>
-                <div>&nbsp;</div>
-
-
+                  <div>&nbsp;</div>
+                  <div><span style="font-size: 20px; color:#616161;"><b>RIZE</b> is a modular, accessible and flexible
+                      End-User
+                      Development
+                      framework for Robotics</span></div>
+                  <div>&nbsp;</div>
+                </v-card>
               </v-flex>
 
-         
+
             </v-layout>
+
+
+            <v-container fluid grid-list-xl>
+              <v-flex xs12>
+                <v-card color="white" flat>
+                  &emsp;
+                </v-card>
+              </v-flex>
+            </v-container>
+
 
             <v-container fluid grid-list-xl>
               <v-flex xs12>
@@ -95,33 +94,114 @@
 
               <v-layout justify-center>
 
-     
+
 
 
 
                 <v-flex xs8>
 
                   <div class="text-center">
-                    <v-btn rounded class="ma-2" href="https://enriquecoronadozu.github.io/RIZE/download" target="_blank" color="blue darken-2" dark>  <v-icon left>mdi-download</v-icon> Download RIZE</v-btn>
-                    <v-btn rounded class="ma-2" href="https://enriquecoronadozu.github.io/RIZE/pepper" target="_blank" outlined color="blue darken-2">
-                      <v-icon left>mdi-robot-industrial</v-icon> Select you robot
+                    <v-btn large rounded class="ma-2" href="https://enriquecoronadozu.github.io/RIZE/download"
+                      target="_blank" color="blue darken-2" dark>
+                      <v-icon left>mdi-download</v-icon> Download RIZE
                     </v-btn>
-                    <v-btn rounded class="ma-2"  outlined color="blue darken-2">
-                      <v-icon left>mdi-file-document</v-icon> Get started
+                    <v-btn large rounded class="ma-2" href="https://enriquecoronadozu.github.io/RIZE/pepper"
+                      target="_blank" outlined color="blue darken-2">
+                      <v-icon left>mdi-robot-industrial</v-icon> Robots
                     </v-btn>
-                  </div>                     
-            
+                    <v-btn large rounded class="ma-2" outlined color="blue darken-2">
+                      <v-icon left>mdi-file-document</v-icon> Documentation
+                    </v-btn>
+                  </div>
+
                 </v-flex>
 
-     
+
 
 
 
               </v-layout>
+
+
             </v-container>
+
+
+
+            <v-container fluid grid-list-xl>
+              <v-flex xs12>
+                <v-card color="white" flat>
+                  &emsp;
+                </v-card>
+              </v-flex>
+            </v-container>
+
+            <v-container fluid grid-list-xl>
+              <v-flex xs12>
+                <v-card color="white" flat>
+                  &emsp;
+                </v-card>
+              </v-flex>
+            </v-container>
+
+
             <v-layout justify-center>
 
+
+
+              <v-flex xs10>
+
+                <v-card color="white" flat>
+                  &emsp;
+                  <v-container outlined tile>
+                    <v-row no-gutters>
+
+                      <v-col cols="4" sm="12" md="3">
+                        <v-card flat color="white">
+                          <p style="color:#1E88E5; font-size:23px">
+                            Modular
+                          </p>
+                          <v-card-text<p style="font-size:16px;"> Robot behaviors are designed as independent and
+                            interchangeable modules
+
+                            </p>
+                            </v-card-text>
+                        </v-card>
+                      </v-col>
+                      <v-col cols="1" sm="1" md="1">
+                        <v-card flat color="white">
+                        </v-card>
+                      </v-col>
+                      <v-col cols="4" sm="12" md="4">
+                        <v-card flat color="white">
+                          <p style="color:#1E88E5; font-size:23px">
+                            Accessible
+                          </p>
+                          <v-card-text<p style="font-size:16px;"> Native support for Windows, Mac and Linux. Easy
+                            integration with ROS (using rosbridge) and non-ROS robots (using NEP) </p>
+                            </v-card-text>
+                        </v-card>
+                      </v-col>
+                      <v-col cols="1" sm="1" md="1">
+                        <v-card flat color="white">
+                        </v-card>
+                      </v-col>
+                      <v-col cols="3" sm="12" md="3">
+                        <v-card flat color="white">
+                          <p style="color:#1E88E5; font-size:23px;">
+                            Flexible
+                          </p>
+                          <v-card-text<p style="font-size:16px;">Developers can adapt the RIZE environments and robot capabilities to end user needs</p>
+                            </v-card-text>
+                        </v-card>
+                      </v-col>
+                    </v-row>
+                  </v-container>
+                </v-card>
+
+
+              </v-flex>
             </v-layout>
+
 
           </v-container>
       </v-content>
