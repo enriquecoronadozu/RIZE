@@ -55,7 +55,8 @@
                   <div><span style=" color:#424242; font-size: 36px"> <b>R</b>obot <b>I</b>nterfaces from
                       <b>Z</b>ero
                       <b>E</b>xperience</span>
-                  </div> <div>&nbsp;</div>
+                  </div>
+                  <div>&nbsp;</div>
                   <v-container>
                     <v-avatar size="75">
                       <img src="images/rize2.png" alt="avatar">
@@ -103,7 +104,7 @@
                   <div class="text-center">
                     <v-btn large rounded class="ma-2" href="https://enriquecoronadozu.github.io/RIZE/download"
                       target="_blank" color="blue darken-2" dark>
-                      <v-icon left>mdi-download</v-icon> Download RIZE
+                      <v-icon left>mdi-download</v-icon> Download RIZE (beta)
                     </v-btn>
                     <v-btn large rounded class="ma-2" href="https://enriquecoronadozu.github.io/RIZE/robots"
                       target="_blank" outlined color="blue darken-2">
@@ -193,7 +194,8 @@
                           <p style="color:#1E88E5; font-size:23px;">
                             Flexible
                           </p>
-                          <v-card-text<p style="font-size:16px;">Developers can adapt the RIZE environments and robot capabilities to end user needs</p>
+                          <v-card-text<p style="font-size:16px;">Developers can adapt the RIZE environments and robot
+                            capabilities to end user needs</p>
                             </v-card-text>
                         </v-card>
                       </v-col>
@@ -215,7 +217,7 @@
 
       <v-footer color="teal" app>
         <v-spacer></v-spacer>
-        <span class="white--text">&copy; 2019</span>
+        <span class="white--text">&copy; 2020</span>
       </v-footer>
 
 
@@ -232,28 +234,18 @@
       vuetify: new Vuetify(),
       data: () => ({
         dialog: false,
-        e6: 1,
-        items: [
-          { title: 'Dashboard', icon: 'dashboard' },
-          { title: 'Account', icon: 'account_box' },
-          { title: 'Admin', icon: 'gavel' },
-        ],
-        colors: [
-          'indigo',
-          'warning',
-          'pink darken-2',
-          'red lighten-1',
-          'deep-purple accent-4',
-        ],
-        slides: [
-          'First',
-          'Second',
-          'Third',
-          'Fourth',
-          'Fifth',
-        ],
-
+        dateUpdate: "",
       }),
+
+      created() {
+        this.initialize()
+      },
+      methods: {
+        initialize() {
+
+        },
+      }
+
     })
   </script>
 </body>
