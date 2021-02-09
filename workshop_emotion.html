@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+
+  <!-- ################# Google Blockly realted stuff  ######################## -->
+  <!-- <script src="C:/Rize/blockly/blockly_uncompressed.js"></script> -->
+  <!-- In internet mode better uncomment the next line -->
+  <script src="developer/worshop_emotion_2021/blockly_static/blockly_compressed.js"></script>
+  <script src="developer/worshop_emotion_2021/blockly_static/en.js"></script>
+  <!-- We need to run build.py in order to add our blocks, this are saved in this script -->
+  <script src="developer/worshop_emotion_2021/blockly_dynamic/blocks_compressed.js"></script>
+  <!-- Here the code generation scripts are added for each programming lenguage used -->
+  <script src="developer/worshop_emotion_2021/blockly_dynamic/javascript_compressed.js?"></script>
+
+  <script src="developer/worshop_emotion_2021/blockly_dynamic/primitives_blocks.js?"></script>
+  <script src="developer/worshop_emotion_2021/blockly_dynamic/primitives_generators.js?"></script>
+  <script src="developer/worshop_emotion_2021/blockly_dynamic/behaviors_blocks.js?"></script>
+  <script src="developer/worshop_emotion_2021/blockly_dynamic/behaviors_generators.js?"></script>
+
+  <!--  ************** Blockly Workspace definition ***************** -->
+  <script src="developer/worshop_emotion_2021/toolbox.js"></script>
+  <script src="developer/worshop_emotion_2021/workspace.js"></script>
+  <link href="design.css" rel="stylesheet" />
+
+  <!-- Main -->
+  <script src="rize/rizeBlockly.js"></script>
+  <script src="rize/rizeBlocks.js"></script>
+
+
+
+</head>
+
+<body>
+  <div style="height: 50px;">
+    <div id="app" style="height: 50px;">
+      <v-app id="inspire" style="height: 50px;">
+        <v-main>
+          <v-app-bar color="indigo darken-1" clipped-right dense dark promminent flat>
+
+            <v-toolbar-title>KI-Camp 2021: Workshop Emotions - Robot behaviour editor</v-toolbar-title>
+            <v-spacer></v-spacer>
+
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on }">
+                <v-btn class="mx-4" @click="onOpen" text v-on="on">
+                  <v-icon>mdi-folder-open</v-icon>
+                </v-btn>
+              </template>
+              <span>Load</span>
+            </v-tooltip>
+
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on }">
+                <v-btn class="mx-4" v-on:click="onSaveXML" text v-on=" on">
+                  <v-icon>mdi-file-download</v-icon>
+                </v-btn>
+              </template>
+              <span>Save</span>
+            </v-tooltip>
+
+
+
+            <v-dialog max-width="400px" v-model="dialog_primitives">
+              <v-card>
+                <v-app-bar flat dense dark color="pink darken-2">
+                  <v-tooltip bottom>
+                    <template v-slot:activator="{ on }">
+                      <v-btn text v-on:click="onClose" v-on="on">
+                        <v-icon>mdi-close</v-icon>
+                      </v-btn>
+                    </template>
+                    <span> Close window </span>
+                  </v-tooltip>
+                  <v-toolbar-title> {{current_primitive.primitive}}</v-toolbar-title>
+                  <v-spacer></v-spacer>
+                  <v-icon>mdi-tune</v-icon>
+                  <v-toolbar-items></v-toolbar-items>
+                </v-app-bar>
+
+                <v-container fluid grid-list-xl>
+                  <v-layout wrap align-center>
+                    <v-flex xs12 sm12 d-flex></v-flex>
+                    </v-flex>
+                    <v-flex xs12 sm12 d-flex>
+
+                      <div v-if="current_primitive.input === 'url'">
+                        <v-textarea label="Write URL (web page) here" auto-grow outlined rows="1" row-height="20"
+                          v-model="model_mainInput"> </v-textarea>
+                      </div>
+
+                      <div v-if="current_primitive.input === 'string'">
+                        <v-textarea label="Write text here" auto-grow outlined rows="1" row-height="20"
+                          v-model="model_mainInput"> </v-textarea>
+                      </div>
+
+                      <div v-if="current_primitive.input === 'dropdown'">
+                        <v-select :items="items_dropdown" v-model="model_mainInput" label="select option"></v-select>
+                      </div>
+
+                      <div v-if="current_primitive.input === 'seconds'">
+                        <v-text-field v-model="model_mainInput" type="number" max="500" min="0" suffix="seconds"
+                          step=".1" single-line></v-text-field>
+                      </div>
+
+                    </v-flex>
+                  </v-layout>
+
+                  <v-layout wrap>
+                    <v-flex xs12>
+
+                      <div v-for="(value, name) in current_primitive.options">
+
+                        <div v-if="value === 'percentage'">
+
+                          <v-flex xs12>
+                            <v-slider inverse-label v-model="model_options[name]" :label="name" class="align-center"
+                              :max="100" :min="0" step="2" thumb-label="always">
+                            </v-slider>
+                          </v-flex>
+                        </div>
+
+                        <div v-if="value === 'bool'">
+                          <v-checkbox v-model="model_options[name]" :label="name"></v-checkbox>
+                        </div>
+
+                        <div v-if="value === 'dropdown'">
+                          <v-select :items="items_robots" v-model="model_options[name]" filled :label="name"></v-select>
+                        </div>
+
+                        <div v-if="value === 'seconds'">
+                          <v-header>{{name}}</v-header>
+                          <v-text-field v-model="model_options[name]" type="number" max="500" min="0" suffix="seconds"
+                            step=".1" single-line></v-text-field>
+                        </div>
+
+                        <div v-if="value === 'minutes'">
+                          <v-header>{{name}}</v-header>
+                          <v-text-field v-model="model_options[name]" type="number" max="60" min="0" step=".1"
+                            suffix="minutes" single-line></v-text-field>
+                        </div>
+
+                        <div v-if="value === 'hours'">
+                          <v-header>{{name}}</v-header>
+                          <v-text-field v-model="model_options[name]" type="number" max="23" min="0" step=".1"
+                            suffix="hours" single-line></v-text-field>
+                        </div>
+
+                        <div v-if="value === 'degrees'">
+                          <v-header>{{name}}</v-header>
+                          <v-text-field v-model="model_options[name]" type="number" max="360" min="0" step="1"
+                            suffix="degree" single-line></v-text-field>
+                        </div>
+
+                        <div v-if="value === 'meters'">
+                          <v-header>{{name}}</v-header>
+                          <v-text-field v-model="model_options[name]" type="number" max="100" min="0" step=".1"
+                            suffix="meters" single-line></v-text-field>
+                        </div>
+
+
+                        <div v-if="value === 'number'">
+                          <v-header>{{name}}</v-header>
+                          <v-text-field v-model="model_options[name]" label="value" type="number" step="1" single-line>
+                          </v-text-field>
+                        </div>
+
+                      </div>
+                    </v-flex>
+                  </v-layout>
+
+                  <v-spacer></v-spacer>
+
+                  <v-layout wrap align-center>
+                    &nbsp;
+                    <v-spacer></v-spacer>
+                    <v-btn outlined color="success" text v-on:click="onSetPrimitive">Set</v-btn> &nbsp;
+                    &nbsp;
+                  </v-layout>
+                </v-container>
+
+                </v-list>
+                <v-list three-line subheader></v-list>
+              </v-card>
+            </v-dialog>
+
+
+            <v-dialog v-model="dialog_load" persistent max-width="400px">
+              </v-btn>
+              <v-card>
+                <v-toolbar flat dense dark color="pink darken-4">
+                  <v-btn icon dark v-on:click="onClose">
+                    <v-icon>mdi-close</v-icon>
+                  </v-btn>
+                  <v-toolbar-title>Load XML</v-toolbar-title>
+                  <v-spacer></v-spacer>
+                  <v-icon>mdi-folder-open</v-icon>
+                  <v-toolbar-items></v-toolbar-items>
+                </v-toolbar>
+                <v-container fluid grid-list-xl>
+                  <v-layout wrap align-center>
+                    <v-flex xs12 sm12 d-flex></v-flex>
+                    <div class="headline"><span style="font-size: 20px"> &nbsp; Copy and paste XML content: </span>
+                    </div>
+                    </v-flex>
+                    <v-flex xs12 sm12 d-flex>
+                      <v-textarea name="input-7-1" v-model="text"></v-textarea>
+                    </v-flex>
+                  </v-layout>
+
+                  <div>
+                  </div>
+                  <v-spacer></v-spacer>
+                  <v-layout wrap align-center>
+                    &nbsp;
+                    <v-spacer></v-spacer>
+                    <v-btn outlined color="primary" v-on:click="onLoadXML" dark> Load
+                    </v-btn>
+                    &nbsp;
+                    &nbsp;
+                  </v-layout>
+                </v-container>
+              </v-card>
+            </v-dialog>
+
+
+
+            </v-menu>
+          </v-app-bar>
+
+          <div id="main" style="width:65%;height: 90%; top: 80px; position: absolute;  z-index: 999">
+            <div id=" blocklyArea" style="width:90%;height: 89%;">
+              <div id="blocklyDiv" style="width:90%;height: 89%;">
+              </div>
+            </div>
+          </div>
+
+          <v-container>
+            <v-row>
+              <v-col cols="12" sm="8" md="8">
+
+              </v-col>
+              <v-col cols="12" sm="4" md="4">
+                <v-data-table :headers="headers" :items="programs_behaviors" sort-by="calories" class="elevation-1">
+                  <template v-slot:top>
+                    <v-toolbar flat>
+                      <v-toolbar-title>List</v-toolbar-title>
+                      <v-divider class="mx-4" inset vertical></v-divider>
+                      <v-spacer></v-spacer>
+                      <v-dialog v-model="dialog" max-width="500px">
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-btn color="primary" dark class="mb-2" v-bind="attrs" v-on="on">
+                            New Item
+                          </v-btn>
+                        </template>
+                        <v-card>
+                          <v-card-title>
+                            <span class="headline">{{ formTitle }}</span>
+                          </v-card-title>
+
+                          <v-card-text>
+                            <v-container>
+                              <v-row>
+                                <v-col cols="12" sm="6" md="4">
+                                  <v-text-field v-model="editedItem.name" label="Name"></v-text-field>
+                                </v-col>
+                              </v-row>
+                            </v-container>
+                          </v-card-text>
+
+                          <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn color="blue darken-1" text @click="close">
+                              Cancel
+                            </v-btn>
+                            <v-btn color="blue darken-1" text @click="save">
+                              Save
+                            </v-btn>
+                          </v-card-actions>
+                        </v-card>
+                      </v-dialog>
+                      <v-dialog v-model="dialogDelete" max-width="500px">
+                        <v-card>
+                          <v-card-title class="headline">Are you sure you want to delete this item?</v-card-title>
+                          <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn>
+                            <v-btn color="blue darken-1" text @click="deleteItemConfirm">OK</v-btn>
+                            <v-spacer></v-spacer>
+                          </v-card-actions>
+                        </v-card>
+                      </v-dialog>
+                    </v-toolbar>
+                  </template>
+                  <template v-slot:item.actions="{ item }">
+                    <v-icon small class="mr-2" @click="editProgram(item)">
+                      mdi-pencil
+                    </v-icon>
+                    <v-icon small @click="deleteItem(item)">
+                      mdi-delete
+                    </v-icon>
+                  </template>
+                  <template v-slot:no-data>
+                    <v-btn color="primary" @click="initialize">
+                      Reset
+                    </v-btn>
+                  </template>
+                </v-data-table>
+
+              </v-col>
+            </v-row>
+          </v-container>
+
+
+        </v-main>
+
+      </v-app>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+  <script>
+
+    var avaliable_primitives = {
+      "animation": {
+        "description": "Perform an animation",
+        "input": "dropdown",
+        "options": {
+          "flip": "bool",
+          "reverse": "bool",
+          "time": "seconds"
+        },
+        "primitive": "Animation",
+        "type": "output"
+      },
+      "close_hand": {
+        "description": "Close robot's hand",
+        "input": "dropdown",
+        "input_options": [
+          "both",
+          "right",
+          "left"
+        ],
+        "primitive": "Close hand",
+        "type": "output"
+      },
+      "emotion": {
+        "description": "Some emotion",
+        "input": "dropdown",
+        "input_options": [
+          "happy",
+          "angry",
+          "sad",
+          "surprised",
+          "neutral"
+        ],
+        "primitive": "Emotion",
+        "type": "input"
+      },
+      "human_detected": {
+        "description": "Is human detected with the camera?",
+        "input": "dropdown",
+        "input_options": [
+          "yes",
+          "no"
+        ],
+        "primitive": "Human detected (camera)",
+        "type": "input"
+      },
+      "mode": {
+        "description": "Wake or rest the robot",
+        "input": "dropdown",
+        "input_options": [
+          "wake_up",
+          "rest"
+        ],
+        "primitive": "Mode (Wake up/ Rest)",
+        "type": "output"
+      },
+      "object_detected": {
+        "description": "Object detected",
+        "input": "string",
+        "primitive": "Object detected",
+        "type": "input"
+      },
+      "open_hand": {
+        "description": "Open robot's hands",
+        "input": "dropdown",
+        "input_options": [
+          "both",
+          "right",
+          "left"
+        ],
+        "primitive": "Open hand",
+        "type": "output"
+      },
+      "say": {
+        "description": "Say something with the robot",
+        "input": "string",
+        "options": {
+          "pitch": "percentage",
+          "velocity": "percentage"
+        },
+        "primitive": "Say",
+        "type": "output"
+      },
+      "take_photo": {
+        "description": "Take and show a photo",
+        "input": "dropdown",
+        "input_options": [
+          "Top",
+          "Bottom"
+        ],
+        "primitive": "Take photo with camera on",
+        "type": "output"
+      },
+      "touched": {
+        "description": "Is robot touched",
+        "input": "dropdown",
+        "input_options": [
+          "head",
+          "right_hand",
+          "left_hand"
+        ],
+        "primitive": "Touched",
+        "type": "input"
+      },
+      "track_people_with": {
+        "description": "Track human",
+        "input": "dropdown",
+        "input_options": [
+          "WholeBody",
+          "Head",
+          "None"
+        ],
+        "options": {
+          "LeftArm": "bool",
+          "RightArm": "bool"
+        },
+        "primitive": "Track people with",
+        "type": "output"
+      },
+      "track_redball_with": {
+        "description": "Track red objects",
+        "input": "dropdown",
+        "input_options": [
+          "WholeBody",
+          "Head",
+          "None"
+        ],
+        "options": {
+          "LeftArm": "bool",
+          "RightArm": "bool"
+        },
+        "primitive": "Track red ball with",
+        "type": "output"
+      },
+      "track_sound_with": {
+        "description": "Track sound sources",
+        "input": "dropdown",
+        "input_options": [
+          "WholeBody",
+          "Head",
+          "None"
+        ],
+        "options": {
+          "LeftArm": "bool",
+          "RightArm": "bool"
+        },
+        "primitive": "Track sound with",
+        "type": "output"
+      },
+      "turn": {
+        "description": "Turn robot body",
+        "input": "dropdown",
+        "input_options": [
+          "left",
+          "right"
+        ],
+        "options": {
+          "degrees": "degrees"
+        },
+        "primitive": "Turn",
+        "type": "output"
+      },
+      "wait": {
+        "description": "Wait some seconds",
+        "input": "seconds",
+        "primitive": "Wait (seconds)",
+        "type": "output"
+      },
+      "walk": {
+        "description": "Turn robot body",
+        "input": "dropdown",
+        "input_options": [
+          "forwards",
+          "backwards"
+        ],
+        "options": {
+          "meters": "meters"
+        },
+        "primitive": "Walk",
+        "type": "output"
+      },
+      "walk_toward": {
+        "description": "Walk towards people or a red ball",
+        "input": "dropdown",
+        "input_options": [
+          "People",
+          "RedBall",
+          "None"
+        ],
+        "options": {
+          "LeftArm": "bool",
+          "RightArm": "bool"
+        },
+        "primitive": "Walk towards",
+        "type": "output"
+      },
+      "word": {
+        "description": "Listen human speech and detect word",
+        "input": "string",
+        "primitive": "Word",
+        "type": "input"
+      }
+    }
+    var AppVue = new Vue({
+      el: '#app',
+      vuetify: new Vuetify(),
+
+      data() {
+
+        return {
+          icon: "mdi-alert-circle-outline",
+          color: "blue darken-2",
+          dialog_load: false,
+          dialog_primitives: false,
+          block_name: "",
+          text: "",
+          model_options: {},
+          program_dict: {},
+          model_mainInput: "",
+          items_dropdown: [],
+          dialog: false,
+          dialogDelete: false,
+          headers: [
+            {
+              text: 'Behaviour',
+              align: 'start',
+              sortable: false,
+              value: 'name',
+            },
+            { text: 'Actions', value: 'actions', sortable: false },
+          ],
+          programs_behaviors: [],
+          editedIndex: -1,
+          editedItem: {
+            name: '',
+          },
+          defaultItem: {
+            name: '',
+          },
+          current_primitive: {
+          },
+        }
+      },
+
+      created() {
+
+        window.addEventListener('resize', this.handleResize)
+        this.initialize()
+      },
+
+      computed: {
+        formTitle() {
+          return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
+        },
+      },
+
+      watch: {
+        dialog(val) {
+          val || this.close()
+        },
+        dialogDelete(val) {
+          val || this.closeDelete()
+        },
+      },
+
+
+      methods: {
+
+        initialize() {
+          this.programs_behaviors = [
+            {
+              name: 'Greeting',
+              program: "",
+            },
+            {
+              name: 'Weather',
+              program: "",
+            },
+            {
+              name: 'News',
+              program: "",
+            },
+          ]
+          this.block_name = this.programs_behaviors[0].name
+          this.program_dict = { 'Greeting': "", 'Weather': "", 'News': "" }
+        },
+
+        editProgram(item) {
+
+          var xml = Blockly.Xml.workspaceToDom(WORKSPACE);
+          // Tranform a xml text in a more redeable xml text
+          xml = Blockly.Xml.domToPrettyText(xml);
+          console.log(xml);
+          programs_xml["main"] = xml;
+          this.program_dict[this.block_name] = xml;
+
+          this.editedIndex = this.programs_behaviors.indexOf(item)
+          this.editedItem = Object.assign({}, item)
+          this.block_name = this.editedItem.name
+          loadXML(this.program_dict[this.block_name])
+
+        },
+
+        editItem(item) {
+          this.editedIndex = this.programs_behaviors.indexOf(item)
+          this.editedItem = Object.assign({}, item)
+          this.dialog = true
+        },
+
+        deleteItem(item) {
+          this.editedIndex = this.programs_behaviors.indexOf(item)
+          this.editedItem = Object.assign({}, item)
+          this.dialogDelete = true
+        },
+
+        deleteItemConfirm() {
+          this.programs_behaviors.splice(this.editedIndex, 1)
+          this.closeDelete()
+        },
+
+        close() {
+          this.dialog = false
+          this.$nextTick(() => {
+            this.editedItem = Object.assign({}, this.defaultItem)
+            this.editedIndex = -1
+          })
+        },
+
+        closeDelete() {
+          this.dialogDelete = false
+          this.$nextTick(() => {
+            this.editedItem = Object.assign({}, this.defaultItem)
+            this.editedIndex = -1
+          })
+        },
+
+        save() {
+          if (this.editedIndex > -1) {
+            Object.assign(this.programs_behaviors[this.editedIndex], this.editedItem)
+          } else {
+            this.programs_behaviors.push(this.editedItem)
+          }
+          this.close()
+        },
+
+        onOpen() {
+          document.getElementById("main").style.zIndex = "1";
+          this.dialog_load = true;
+        },
+
+        onClose() {
+          document.getElementById("main").style.zIndex = "9999";
+          this.dialog_primitives = false
+          this.dialog_load = false;
+        },
+
+        onLoadXML() {
+
+          console.log(this.text)
+          xml = Blockly.Xml.textToDom(this.text);
+          WORKSPACE.clear();
+          Blockly.Xml.domToWorkspace(xml, WORKSPACE);
+
+        },
+
+        onSetPrimitive: function () {
+          // AppVue.current_primitive have info about current primitive
+          console.log(this.current_primitive)
+          block_selected.setFieldValue(this.model_mainInput, "inp_1");
+          try {
+            block_selected.setFieldValue(JSON.stringify(this.model_options), "inp_2");
+          } catch (error) {
+
+          }
+
+          document.getElementById("main").style.zIndex = "9999";
+          this.dialog_primitives = false
+
+          try {
+            // rosbridge
+            if (using_ros === true) {
+              var str = new ROSLIB.Message({
+                data: JSON.stringify({ "action": "edit_primitive", "input": this.current_primitive.primitive })
+              });
+              publisher_rize.publish(str)
+            }
+          } catch (error) {
+
+          }
+
+        },
+
+        blockEvent(masterEvent) {
+          // To select the block properties we can use json["newValue"] (for ui in element== "selected") or json["blockId"] (for create and move)
+          // Convert event to JSON.  This could then be transmitted across the net.
+          var json = masterEvent.toJson();
+          console.log(json);
+          console.log(masterEvent.type)
+          console.log(masterEvent.element)
+
+
+          if (masterEvent.type == "create") {
+            rizeBlockly.onCreate(json)
+          }
+
+
+          if (masterEvent.type == "ui") {
+
+            if (masterEvent.element == "selected") {
+              if (json["newValue"] != null) {
+                block_selected = WORKSPACE.getBlockById(json["newValue"]) //  Select block json from id
+                //console.log(block_selected.type);
+                if (block_selected.type === "reaction") {
+                  this.current_primitive = { "primitive": "nothing", "options": {} }
+                }
+                else {
+                  try {
+                    this.current_primitive = avaliable_primitives[block_selected.type]
+                    if (this.current_primitive.input === "dropdown") {
+                      if (block_selected.type === "animation") {
+                        var animation_list = rizeObject.onReadJSONFile(rizeObject.directoryAnimations + "/list_" + rize_robot + ".json");
+                        AppVue.items_dropdown = animation_list["values"]
+                      }
+                      else {
+                        AppVue.items_dropdown = this.current_primitive.input_options
+                      }
+                    }
+                    // console.log(this.current_primitive)
+
+                  } catch (error) {
+                    // console.log("Error here")
+                    this.current_primitive = { "primitive": "nothing", "options": {} }
+                  }
+                }
+              }
+            }
+          }
+        },
+
+
+        onSaveXML() {
+
+          function download(content, fileName, contentType) {
+            var a = document.createElement("a");
+            var file = new Blob([content], { type: contentType });
+            a.href = URL.createObjectURL(file);
+            a.download = fileName;
+            a.click();
+          }
+          download(JSON.stringify(AppVue.program_dict), 'program.json', 'text/plain');
+        },
+
+      }
+
+    })
+  </script>
+</body>
+
+<script src="rize/blockly_code.js"></script>
+<script src="download.js"></script>
+<script src="nao.js"></script>
+<script>
+
+
+  function blockEvent(masterEvent) {
+    AppVue.blockEvent(masterEvent)
+  }
+  WORKSPACE.addChangeListener(blockEvent);
+  var block_selected = "";
+
+  // Used to set parameters of primitives
+  var edit_primitive = function () {
+
+    try {// If there are options
+      AppVue.model_options = {} // Reset options
+      AppVue.model_mainInput = block_selected.getFieldValue("inp_1") // Get input one
+      var options = block_selected.getFieldValue("inp_2"); // Get input two
+      var options2fill = JSON.parse(options) // Convert option 2 two JSON
+      AppVue.model_options = options2fill // Fill form
+    }
+    catch
+    {
+      var primitive_default_values = JSON.parse(JSON.stringify(AppVue.current_primitive.options))
+      console.log(primitive_default_values)
+      for (var key_e in primitive_default_values) {
+
+        if (primitive_default_values[key_e] === "bool") { primitive_default_values[key_e] = false }
+        if (primitive_default_values[key_e] === "number") { primitive_default_values[key_e] = 0 }
+        if (primitive_default_values[key_e] === "int") { primitive_default_values[key_e] = 0 }
+        if (primitive_default_values[key_e] === "percentage") { primitive_default_values[key_e] = 50 }
+        if (primitive_default_values[key_e] === "volume") { primitive_default_values[key_e] = 50 }
+        if (primitive_default_values[key_e] === "degrees") { primitive_default_values[key_e] = 1 }
+        if (primitive_default_values[key_e] === "meters") { primitive_default_values[key_e] = 0.1 }
+        if (primitive_default_values[key_e] === "hours") { primitive_default_values[key_e] = 12 }
+        if (primitive_default_values[key_e] === "seconds") { primitive_default_values[key_e] = 5 }
+        AppVue.model_options = primitive_default_values
+      }
+      AppVue.model_options
+      console.log(block_selected.getFieldValue("inp_1"))
+      console.log(block_selected.getFieldValue("inp_2"))
+    }
+    // Open dialog
+    document.getElementById("main").style.zIndex = "1";
+    AppVue.dialog_primitives = true;
+  }
+
+
+  var programs_xml = { "main": "" };
+
+
+  function loadXML(text) {
+    xml = Blockly.Xml.textToDom(text);
+    WORKSPACE.clear();
+    Blockly.Xml.domToWorkspace(xml, WORKSPACE);
+
+  }
+  function onSaveBlocklyXML2() {
+
+    // Transform the block in a xml format
+    var xml = Blockly.Xml.workspaceToDom(WORKSPACE);
+    // Tranform a xml text in a more redeable xml text
+    xml = Blockly.Xml.domToPrettyText(xml);
+    console.log(xml);
+    programs_xml["main"] = xml;
+    // Save a file
+    //download(xml, "blocks.xml", 'text/plain');
+  }
+
+
+</script>
+
+
+</html>

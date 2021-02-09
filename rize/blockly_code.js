@@ -6,7 +6,7 @@
 var blocklyArea = document.getElementById('blocklyArea');
 var blocklyDiv = document.getElementById('blocklyDiv');
 var WORKSPACE = Blockly.inject('blocklyDiv', options);
-
+var configuration_image = "images/edit.png"
 
 
 
