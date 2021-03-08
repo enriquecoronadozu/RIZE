@@ -1,4 +1,4 @@
-goog.provide('Blockly.Blocks.primitives');
+goog.provide('Blockly.Blocks.primitives_desktop');
 goog.require('Blockly.Blocks');
 
 
@@ -14,21 +14,6 @@ init: function() {
 	this.setOutput(true,['action']);
 
 	this.setTooltip("Perform an animation");
- 	this.setHelpUrl("");
-}};
-
-Blockly.Blocks["change_leds"] = {
-init: function() {
-	this.appendDummyInput()
-		.appendField("Change leds")
-		.appendField(new Blockly.FieldTextInput("edit"), "inp_1")
-		.appendField(" options")
-		.appendField(new Blockly.FieldTextInput("edit"), "inp_2")
-		.appendField(new Blockly.FieldImage(configuration_image, 16, 16, "*", edit_primitive))		;
-	this.setColour("#2196f3");
-	this.setOutput(true,['action']);
-
-	this.setTooltip("Change the color of the robot leds using a RGB format");
  	this.setHelpUrl("");
 }};
 
@@ -48,26 +33,13 @@ init: function() {
 Blockly.Blocks["human_detected"] = {
 init: function() {
 	this.appendDummyInput()
-		.appendField("Human detected (camera)")
+		.appendField("Human detected")
 		.appendField(new Blockly.FieldTextInput("edit"), "inp_1")
 		.appendField(new Blockly.FieldImage(configuration_image, 16, 16, "*", edit_primitive))		;
 	this.setColour("#009688");
 	this.setOutput(true,['condition']);
 
 	this.setTooltip("Is human detected with the camera?");
- 	this.setHelpUrl("");
-}};
-
-Blockly.Blocks["human_distance"] = {
-init: function() {
-	this.appendDummyInput()
-		.appendField("Human/object distance (ultrasonic)")
-		.appendField(new Blockly.FieldTextInput("edit"), "inp_1")
-		.appendField(new Blockly.FieldImage(configuration_image, 16, 16, "*", edit_primitive))		;
-	this.setColour("#009688");
-	this.setOutput(true,['condition']);
-
-	this.setTooltip("Is human close or far to the robot?");
  	this.setHelpUrl("");
 }};
 

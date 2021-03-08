@@ -331,12 +331,41 @@
       "animation": {
         "description": "Perform an animation",
         "input": "dropdown",
+        "input_options": [
+          "bored",
+          "confused",
+          "curious",
+          "dance",
+          "disco",
+          "elephant",
+          "greeting",
+          "hello",
+          "kisses",
+          "respire",
+          "thinking",
+          "understand",
+          "wave"
+        ],
         "options": {
-          "flip": "bool",
-          "reverse": "bool",
           "time": "seconds"
         },
         "primitive": "Animation",
+        "type": "output"
+      },
+      "change_leds": {
+        "description": "Change the color of the robot leds using a RGB format",
+        "input": "dropdown",
+        "input_options": [
+          "eyes",
+          "all"
+        ],
+        "options": {
+          "B": "percentage",
+          "G": "percentage",
+          "R": "percentage",
+          "time": "seconds"
+        },
+        "primitive": "Change leds",
         "type": "output"
       },
       "close_hand": {
@@ -350,19 +379,6 @@
         "primitive": "Close hand",
         "type": "output"
       },
-      "emotion": {
-        "description": "Some emotion",
-        "input": "dropdown",
-        "input_options": [
-          "happy",
-          "angry",
-          "sad",
-          "surprised",
-          "neutral"
-        ],
-        "primitive": "Emotion",
-        "type": "input"
-      },
       "human_detected": {
         "description": "Is human detected with the camera?",
         "input": "dropdown",
@@ -373,15 +389,29 @@
         "primitive": "Human detected (camera)",
         "type": "input"
       },
-      "mode": {
-        "description": "Wake or rest the robot",
+      "human_distance": {
+        "description": "Is human close or far to the robot?",
         "input": "dropdown",
         "input_options": [
-          "wake_up",
-          "rest"
+          "close",
+          "middle",
+          "far"
         ],
-        "primitive": "Mode (Wake up/ Rest)",
-        "type": "output"
+        "primitive": "Human/object distance (ultrasonic)",
+        "type": "input"
+      },
+      "human_emotion": {
+        "description": "Detected human emotion",
+        "input": "dropdown",
+        "input_options": [
+          "happy",
+          "anger",
+          "sad",
+          "surprised",
+          "neutral"
+        ],
+        "primitive": "Human emotion",
+        "type": "input"
       },
       "object_detected": {
         "description": "Object detected",
@@ -400,24 +430,28 @@
         "primitive": "Open hand",
         "type": "output"
       },
+      "robot_emotion": {
+        "description": "Internal robot emotion",
+        "input": "dropdown",
+        "input_options": [
+          "happy",
+          "anger",
+          "sad",
+          "surprised",
+          "neutral"
+        ],
+        "primitive": "Robot emotion",
+        "type": "input"
+      },
       "say": {
         "description": "Say something with the robot",
         "input": "string",
         "options": {
+          "contextual": "bool",
           "pitch": "percentage",
           "velocity": "percentage"
         },
         "primitive": "Say",
-        "type": "output"
-      },
-      "take_photo": {
-        "description": "Take and show a photo",
-        "input": "dropdown",
-        "input_options": [
-          "Top",
-          "Bottom"
-        ],
-        "primitive": "Take photo with camera on",
         "type": "output"
       },
       "touched": {
@@ -444,36 +478,6 @@
           "RightArm": "bool"
         },
         "primitive": "Track people with",
-        "type": "output"
-      },
-      "track_redball_with": {
-        "description": "Track red objects",
-        "input": "dropdown",
-        "input_options": [
-          "WholeBody",
-          "Head",
-          "None"
-        ],
-        "options": {
-          "LeftArm": "bool",
-          "RightArm": "bool"
-        },
-        "primitive": "Track red ball with",
-        "type": "output"
-      },
-      "track_sound_with": {
-        "description": "Track sound sources",
-        "input": "dropdown",
-        "input_options": [
-          "WholeBody",
-          "Head",
-          "None"
-        ],
-        "options": {
-          "LeftArm": "bool",
-          "RightArm": "bool"
-        },
-        "primitive": "Track sound with",
         "type": "output"
       },
       "turn": {
@@ -585,9 +589,11 @@
 
       watch: {
         dialog(val) {
+          document.getElementById("main").style.zIndex = "1";
           val || this.close()
         },
         dialogDelete(val) {
+          document.getElementById("main").style.zIndex = "9999";
           val || this.closeDelete()
         },
       },
@@ -746,13 +752,9 @@
                   try {
                     this.current_primitive = avaliable_primitives[block_selected.type]
                     if (this.current_primitive.input === "dropdown") {
-                      if (block_selected.type === "animation") {
-                        var animation_list = rizeObject.onReadJSONFile(rizeObject.directoryAnimations + "/list_" + rize_robot + ".json");
-                        AppVue.items_dropdown = animation_list["values"]
-                      }
-                      else {
-                        AppVue.items_dropdown = this.current_primitive.input_options
-                      }
+
+                      AppVue.items_dropdown = this.current_primitive.input_options
+
                     }
                     // console.log(this.current_primitive)
 
