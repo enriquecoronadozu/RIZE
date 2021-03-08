@@ -47,11 +47,11 @@
 
             <v-tooltip bottom>
               <template v-slot:activator="{ on }">
-                <v-btn class="mx-4" @click="onOpen" text v-on="on">
-                  <v-icon>mdi-folder-open</v-icon>
+                <v-btn class="mx-4" @click="onSave" text v-on="on">
+                  <v-icon>mdi-content-save</v-icon>
                 </v-btn>
               </template>
-              <span>Load</span>
+              <span>Save behavior</span>
             </v-tooltip>
 
             <v-tooltip bottom>
@@ -60,7 +60,7 @@
                   <v-icon>mdi-file-download</v-icon>
                 </v-btn>
               </template>
-              <span>Save</span>
+              <span>Download program</span>
             </v-tooltip>
 
 
@@ -593,7 +593,7 @@
           val || this.close()
         },
         dialogDelete(val) {
-          document.getElementById("main").style.zIndex = "9999";
+          document.getElementById("main").style.zIndex = "1";
           val || this.closeDelete()
         },
       },
@@ -619,6 +619,20 @@
           this.block_name = this.programs_behaviors[0].name
           this.program_dict = { 'Greeting': "", 'Weather': "", 'News': "" }
         },
+
+
+        onSave() {
+
+          var xml = Blockly.Xml.workspaceToDom(WORKSPACE);
+          // Tranform a xml text in a more redeable xml text
+          xml = Blockly.Xml.domToPrettyText(xml);
+          console.log(xml);
+          programs_xml["main"] = xml;
+          this.program_dict[this.block_name] = xml;
+
+        },
+
+
 
         editProgram(item) {
 
