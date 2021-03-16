@@ -9,13 +9,12 @@
             "dance",
             "disco",
             "elephant",
-            "greeting",
+            "excited",
+            "fear",
+            "happy",
             "hello",
-            "kisses",
-            "respire",
-            "thinking",
-            "understand",
-            "wave"
+            "hug",
+            "kisses"
         ],
         "options":{
             "time":"seconds"

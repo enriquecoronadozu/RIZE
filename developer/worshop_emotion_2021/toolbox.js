@@ -8,7 +8,6 @@ toolbox += '</category>';
 toolbox += '<sep></sep>';
 
 toolbox += '<category name="Set event triggers" colour="#009688">'
-toolbox +='    <block type="human_detected"></block>';
 toolbox +='    <block type="human_emotion"></block>';
 toolbox +='    <block type="object_detected"></block>';
 toolbox +='    <block type="robot_emotion"></block>';
